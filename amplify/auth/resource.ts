@@ -1,30 +1,22 @@
 // amplify/auth/resource.ts
-import { defineAuth } from '@aws-amplify/backend';
+import { defineAuth } from "@aws-amplify/backend";
 
-/**
- * Define and configure your auth resource
- * @see {@link https://docs.amplify.aws/gen2/build-a-backend/auth/} for more details
- */
 export const auth = defineAuth({
   loginWith: {
-    email: true, // Enables email + password as the only sign-in method
+    email: true, // Keep email as the login mechanism
   },
   userAttributes: {
     email: {
-      required: true, // Required for sign-up
-      mutable: false, // Cannot be changed after sign-up
+      required: true, // Email is required (aligned with loginWith)
     },
-    phoneNumber: { // Use camelCase for TypeScript compatibility
-      required: false, // Optional for sign-up
-      mutable: true, // Can be updated later
+    phone_number: {
+      required: false, // Optional attribute
     },
-    givenName: {
-      required: true, // Required for sign-up
-      mutable: true, // Can be updated later
+    given_name: {
+      required: false, // Optional first name
     },
-    familyName: {
-      required: true, // Required for sign-up
-      mutable: true, // Can be updated later
+    family_name: {
+      required: false, // Optional last name
     },
   },
 });
