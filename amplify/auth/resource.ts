@@ -5,18 +5,49 @@ export const auth = defineAuth({
   loginWith: {
     email: true, // Keep email as the login mechanism
   },
-  userAttributes: {
+ userAttributes: {
+    
+    // Maps to Cognito standard attribute 'birthdate'
+    birthdate: {
+      mutable: true,
+      required: false,
+    },
+    // Maps to Cognito standard attribute 'email'
     email: {
-      required: true, // Email is required (aligned with loginWith)
+      mutable: true,
+      required: true,
     },
-    phone_number: {
-      required: false, // Optional attribute
+    // Maps to Cognito standard attribute 'family_name'
+    familyName: {
+      mutable: true,
+      required: false,
     },
-    given_name: {
-      required: false, // Optional first name
+    // Maps to Cognito standard attribute 'gender'
+    gender: {
+      mutable: true,
+      required: false,
     },
-    family_name: {
-      required: false, // Optional last name
+    // Maps to Cognito standard attribute 'given_name'
+    givenName: {
+      mutable: true,
+      required: false,
     },
+    // Maps to Cognito standard attribute 'locale'
+    locale: {
+      mutable: true,
+      required: false,
+    },
+    
+    // Maps to Cognito standard attribute 'phone_number'
+    phoneNumber: {
+      mutable: true,
+      required: false,
+    },
+    // Maps to Cognito standard attribute 'picture'
+    profilePicture: {
+      mutable: true,
+      required: false,
+    },
+    
   },
 });

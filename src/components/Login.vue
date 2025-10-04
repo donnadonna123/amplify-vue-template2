@@ -3,7 +3,15 @@
   <div>
     <h1>Login Page</h1>
     <authenticator
-      :sign-up-attributes="['given_name', 'family_name', 'phone_number']"
+      :sign-up-attributes="[
+        'given_name',
+        'family_name',
+        'phone_number',
+        'birthdate',
+        'gender',
+        'locale',
+        'profile_picture'
+      ]"
     >
       <template v-slot="{ signOut }">
         <button @click="signOut">Sign Out</button>
