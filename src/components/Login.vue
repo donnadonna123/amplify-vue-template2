@@ -8,8 +8,9 @@
         'phone_number',
         'birthdate',
         'gender',
-        'locale',
-        'picture'
+        'picture',
+        'custom:country',
+        'custom:state'
       ]"
       :form-fields="formFields"
     >
@@ -24,7 +25,7 @@
 import { Authenticator } from '@aws-amplify/ui-vue';
 import '@aws-amplify/ui-vue/styles.css';
 
-// Define the type for formFields to avoid missing type error
+// Define custom TypeScript interfaces to avoid FormFields type error
 interface FormFieldConfig {
   label?: string;
   placeholder?: string;
@@ -33,11 +34,68 @@ interface FormFieldConfig {
   type?: string;
   options?: { label: string; value: string }[];
   inputProps?: Record<string, any>;
+  value?: string;
 }
 
 interface FormFieldsConfig {
   signUp?: Record<string, FormFieldConfig>;
 }
+
+// Prepopulated options for state (all US states + DC)
+const stateOptions = [
+  { label: 'Select State', value: '' },
+  { label: 'Alabama', value: 'AL' },
+  { label: 'Alaska', value: 'AK' },
+  { label: 'Arizona', value: 'AZ' },
+  { label: 'Arkansas', value: 'AR' },
+  { label: 'California', value: 'CA' },
+  { label: 'Colorado', value: 'CO' },
+  { label: 'Connecticut', value: 'CT' },
+  { label: 'Delaware', value: 'DE' },
+  { label: 'District of Columbia', value: 'DC' },
+  { label: 'Florida', value: 'FL' },
+  { label: 'Georgia', value: 'GA' },
+  { label: 'Hawaii', value: 'HI' },
+  { label: 'Idaho', value: 'ID' },
+  { label: 'Illinois', value: 'IL' },
+  { label: 'Indiana', value: 'IN' },
+  { label: 'Iowa', value: 'IA' },
+  { label: 'Kansas', value: 'KS' },
+  { label: 'Kentucky', value: 'KY' },
+  { label: 'Louisiana', value: 'LA' },
+  { label: 'Maine', value: 'ME' },
+  { label: 'Maryland', value: 'MD' },
+  { label: 'Massachusetts', value: 'MA' },
+  { label: 'Michigan', value: 'MI' },
+  { label: 'Minnesota', value: 'MN' },
+  { label: 'Mississippi', value: 'MS' },
+  { label: 'Missouri', value: 'MO' },
+  { label: 'Montana', value: 'MT' },
+  { label: 'Nebraska', value: 'NE' },
+  { label: 'Nevada', value: 'NV' },
+  { label: 'New Hampshire', value: 'NH' },
+  { label: 'New Jersey', value: 'NJ' },
+  { label: 'New Mexico', value: 'NM' },
+  { label: 'New York', value: 'NY' },
+  { label: 'North Carolina', value: 'NC' },
+  { label: 'North Dakota', value: 'ND' },
+  { label: 'Ohio', value: 'OH' },
+  { label: 'Oklahoma', value: 'OK' },
+  { label: 'Oregon', value: 'OR' },
+  { label: 'Pennsylvania', value: 'PA' },
+  { label: 'Rhode Island', value: 'RI' },
+  { label: 'South Carolina', value: 'SC' },
+  { label: 'South Dakota', value: 'SD' },
+  { label: 'Tennessee', value: 'TN' },
+  { label: 'Texas', value: 'TX' },
+  { label: 'Utah', value: 'UT' },
+  { label: 'Vermont', value: 'VT' },
+  { label: 'Virginia', value: 'VA' },
+  { label: 'Washington', value: 'WA' },
+  { label: 'West Virginia', value: 'WV' },
+  { label: 'Wisconsin', value: 'WI' },
+  { label: 'Wyoming', value: 'WY' },
+];
 
 // Define custom form fields for the sign-up form
 const formFields: FormFieldsConfig = {
@@ -76,21 +134,29 @@ const formFields: FormFieldsConfig = {
         { label: 'Select Gender', value: '' },
         { label: 'Male', value: 'male' },
         { label: 'Female', value: 'female' },
-        { label: 'Other', value: 'other' },
       ],
     },
-    locale: {
-      label: 'Locale',
-      placeholder: 'e.g., en-US',
+    'custom:country': {
+      label: 'Country',
       isRequired: false,
       order: 6,
+      type: 'hidden',
+      value: 'USA',
+    },
+    'custom:state': {
+      label: 'State',
+      placeholder: 'Select your state',
+      isRequired: false,
+      order: 7,
+      type: 'select',
+      options: stateOptions,
     },
     picture: {
       label: 'Profile Picture URL',
       placeholder: 'Enter image URL',
       type: 'url',
       isRequired: false,
-      order: 7,
+      order: 8,
     },
   },
 };
