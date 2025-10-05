@@ -13,13 +13,14 @@
         'custom:state'
       ]"
       :form-fields="formFields"
-      @auth="handleAuthEvent"
     >
       <template v-slot:sign-up-form-fields="{ fields, updateForm }">
         <!-- Default fields (email, password, etc.) -->
         <template v-for="field in fields" :key="field.name">
           <div v-if="field.name !== 'gender' && field.name !== 'custom:country' && field.name !== 'custom:state'" class="form-field">
-            <label :for="field.name">{{ field.label }}</label>
+            <label :for="field.name" :class="{ 'required': field.isRequired }">
+              {{ field.label }}<span v-if="field.isRequired" class="required-asterisk">*</span>
+            </label>
             <input
               :id="field.name"
               :type="field.type"
@@ -112,10 +113,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { Authenticator } from '@aws-amplify/ui-vue';
 import { getCurrentUser, signOut } from 'aws-amplify/auth';
+import { Hub } from '@aws-amplify/core';
 import '@aws-amplify/ui-vue/styles.css';
 
 // Define custom TypeScript interfaces to avoid FormFields type error
@@ -204,35 +206,47 @@ const stateOptions = [
 // Define custom form fields for the sign-up form
 const formFields: FormFieldsConfig = {
   signUp: {
+    email: {
+      label: 'Email',
+      placeholder: 'Enter your email',
+      isRequired: true,
+      order: 1,
+    },
+    password: {
+      label: 'Password',
+      placeholder: 'Enter your password',
+      isRequired: true,
+      order: 2,
+    },
     given_name: {
       label: 'First Name',
       placeholder: 'Enter your first name',
       isRequired: false,
-      order: 1,
+      order: 3,
     },
     family_name: {
       label: 'Last Name',
       placeholder: 'Enter your last name',
       isRequired: false,
-      order: 2,
+      order: 4,
     },
     phone_number: {
       label: 'Phone Number',
       placeholder: 'Enter your phone number',
       isRequired: false,
-      order: 3,
+      order: 5,
     },
     birthdate: {
       label: 'Birthdate',
       placeholder: 'Enter your birthdate (YYYY-MM-DD)',
       isRequired: false,
-      order: 4,
+      order: 6,
     },
     gender: {
       label: 'Gender',
       placeholder: 'Select your gender',
       isRequired: false,
-      order: 5,
+      order: 7,
       type: 'select',
       options: genderOptions,
       inputProps: { type: 'select' },
@@ -241,7 +255,7 @@ const formFields: FormFieldsConfig = {
       label: 'Country',
       placeholder: 'Select your country',
       isRequired: false,
-      order: 6,
+      order: 8,
       type: 'select',
       options: countryOptions,
       inputProps: { type: 'select', value: 'USA' },
@@ -250,7 +264,7 @@ const formFields: FormFieldsConfig = {
       label: 'State',
       placeholder: 'Select your state',
       isRequired: false,
-      order: 7,
+      order: 9,
       type: 'select',
       options: stateOptions,
       inputProps: { type: 'select' },
@@ -260,7 +274,7 @@ const formFields: FormFieldsConfig = {
       placeholder: 'Enter image URL',
       type: 'url',
       isRequired: false,
-      order: 8,
+      order: 10,
     },
   },
 };
@@ -269,19 +283,34 @@ const formFields: FormFieldsConfig = {
 const router = useRouter();
 const user = ref<any>(null);
 
-// Handle auth events (sign-in, sign-up, etc.)
-const handleAuthEvent = async (event: { type: string; data?: any }) => {
-  if (event.type === 'signIn') {
-    try {
-      const currentUser = await getCurrentUser();
-      user.value = currentUser;
-      router.push('/userhome');
-    } catch (error) {
-      console.error('Error checking user after sign-in:', error);
-      user.value = null;
-    }
+// Listen for auth events using Hub
+const authListener = (data: { payload: { event: string; data?: any } }) => {
+  if (data.payload.event === 'signIn') {
+    console.log('Hub signIn event:', data);
+    getCurrentUser()
+      .then((currentUser) => {
+        user.value = currentUser;
+        router.push('/userhome');
+      })
+      .catch((error) => {
+        console.error('Error checking user after sign-in:', error);
+        user.value = null;
+      });
   }
 };
+
+// Set up Hub listener on mount
+let unsubscribe: () => void;
+onMounted(() => {
+  unsubscribe = Hub.listen('auth', authListener);
+});
+
+// Clean up Hub listener on unmount
+onUnmounted(() => {
+  if (unsubscribe) {
+    unsubscribe();
+  }
+});
 </script>
 
 <style scoped>
@@ -299,6 +328,15 @@ h1 {
   flex: 0 0 150px;
   margin-right: 1rem;
   font-weight: bold;
+}
+
+.form-field label.required {
+  font-weight: bold;
+}
+
+.form-field .required-asterisk {
+  color: red;
+  margin-left: 0.2rem;
 }
 
 .form-field input,
