@@ -14,7 +14,96 @@
       ]"
       :form-fields="formFields"
     >
-      <template v-slot="{ signOut }">
+      <template v-slot:sign-up-form-fields="{ fields, updateForm }">
+        <!-- Default fields (email, password, etc.) -->
+        <template v-for="field in fields" :key="field.name">
+          <div v-if="field.name !== 'gender' && field.name !== 'custom:country' && field.name !== 'custom:state'" class="form-field">
+            <label :for="field.name">{{ field.label }}</label>
+            <input
+              :id="field.name"
+              :type="field.type"
+              :value="field.value"
+              :placeholder="field.placeholder"
+              :required="field.isRequired"
+              @input="updateForm({ name: field.name, value: ($event.target as HTMLInputElement).value })"
+            />
+          </div>
+        </template>
+        <!-- Custom dropdowns for gender, country, state -->
+        <div class="form-field">
+          <label for="gender">Gender</label>
+          <select id="gender" @change="updateForm({ name: 'gender', value: ($event.target as HTMLSelectElement).value })">
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="custom:country">Country</label>
+          <select id="custom:country" @change="updateForm({ name: 'custom:country', value: ($event.target as HTMLSelectElement).value })">
+            <option value="">Select Country</option>
+            <option value="USA" selected>United States</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="custom:state">State</label>
+          <select id="custom:state" @change="updateForm({ name: 'custom:state', value: ($event.target as HTMLSelectElement).value })">
+            <option value="">Select State</option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select>
+        </div>
+      </template>
+      <template v-slot="{ user: authUser, signOut }">
         <button @click="signOut">Sign Out</button>
       </template>
     </authenticator>
@@ -22,7 +111,10 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { Authenticator } from '@aws-amplify/ui-vue';
+import { getCurrentUser, signOut } from 'aws-amplify/auth';
 import '@aws-amplify/ui-vue/styles.css';
 
 // Define custom TypeScript interfaces to avoid FormFields type error
@@ -142,9 +234,7 @@ const formFields: FormFieldsConfig = {
       order: 5,
       type: 'select',
       options: genderOptions,
-      inputProps: {
-        type: 'select',
-      },
+      inputProps: { type: 'select' },
     },
     'custom:country': {
       label: 'Country',
@@ -153,9 +243,7 @@ const formFields: FormFieldsConfig = {
       order: 6,
       type: 'select',
       options: countryOptions,
-      inputProps: {
-        type: 'select',
-      },
+      inputProps: { type: 'select', value: 'USA' },
     },
     'custom:state': {
       label: 'State',
@@ -164,9 +252,7 @@ const formFields: FormFieldsConfig = {
       order: 7,
       type: 'select',
       options: stateOptions,
-      inputProps: {
-        type: 'select',
-      },
+      inputProps: { type: 'select' },
     },
     picture: {
       label: 'Profile Picture URL',
@@ -177,6 +263,20 @@ const formFields: FormFieldsConfig = {
     },
   },
 };
+
+// Redirect to userhome after login
+const router = useRouter();
+const user = ref<any>(null);
+
+onMounted(async () => {
+  try {
+    const currentUser = await getCurrentUser();
+    user.value = currentUser;
+    router.push('/userhome');
+  } catch (error) {
+    user.value = null;
+  }
+});
 </script>
 
 <style scoped>
@@ -184,22 +284,37 @@ h1 {
   color: #2c3e50;
 }
 
-.amplify-field {
+.form-field {
+  display: flex;
+  align-items: center;
   margin-bottom: 1rem;
 }
 
-.amplify-label {
-  display: block;
-  margin-bottom: 0.5rem;
+.form-field label {
+  flex: 0 0 150px;
+  margin-right: 1rem;
   font-weight: bold;
 }
 
-.amplify-input,
-.amplify-select {
-  width: 100%;
+.form-field input,
+.form-field select {
+  flex: 1;
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #34495e;
 }
 </style>
