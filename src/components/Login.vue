@@ -13,6 +13,7 @@
         'custom:state'
       ]"
       :form-fields="formFields"
+      @auth="handleAuthEvent"
     >
       <template v-slot:sign-up-form-fields="{ fields, updateForm }">
         <!-- Default fields (email, password, etc.) -->
@@ -111,7 +112,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { Authenticator } from '@aws-amplify/ui-vue';
 import { getCurrentUser, signOut } from 'aws-amplify/auth';
@@ -268,15 +269,19 @@ const formFields: FormFieldsConfig = {
 const router = useRouter();
 const user = ref<any>(null);
 
-onMounted(async () => {
-  try {
-    const currentUser = await getCurrentUser();
-    user.value = currentUser;
-    router.push('/userhome');
-  } catch (error) {
-    user.value = null;
+// Handle auth events (sign-in, sign-up, etc.)
+const handleAuthEvent = async (event: { type: string; data?: any }) => {
+  if (event.type === 'signIn') {
+    try {
+      const currentUser = await getCurrentUser();
+      user.value = currentUser;
+      router.push('/userhome');
+    } catch (error) {
+      console.error('Error checking user after sign-in:', error);
+      user.value = null;
+    }
   }
-});
+};
 </script>
 
 <style scoped>
