@@ -41,7 +41,18 @@ interface FormFieldsConfig {
   signUp?: Record<string, FormFieldConfig>;
 }
 
-// Prepopulated options for state (all US states + DC)
+// Prepopulated options for gender, country, and state
+const genderOptions = [
+  { label: 'Select Gender', value: '' },
+  { label: 'Male', value: 'male' },
+  { label: 'Female', value: 'female' },
+];
+
+const countryOptions = [
+  { label: 'Select Country', value: '' },
+  { label: 'United States', value: 'USA' },
+];
+
 const stateOptions = [
   { label: 'Select State', value: '' },
   { label: 'Alabama', value: 'AL' },
@@ -130,18 +141,21 @@ const formFields: FormFieldsConfig = {
       isRequired: false,
       order: 5,
       type: 'select',
-      options: [
-        { label: 'Select Gender', value: '' },
-        { label: 'Male', value: 'male' },
-        { label: 'Female', value: 'female' },
-      ],
+      options: genderOptions,
+      inputProps: {
+        type: 'select',
+      },
     },
     'custom:country': {
       label: 'Country',
+      placeholder: 'Select your country',
       isRequired: false,
       order: 6,
-      type: 'hidden',
-      value: 'USA',
+      type: 'select',
+      options: countryOptions,
+      inputProps: {
+        type: 'select',
+      },
     },
     'custom:state': {
       label: 'State',
@@ -150,6 +164,9 @@ const formFields: FormFieldsConfig = {
       order: 7,
       type: 'select',
       options: stateOptions,
+      inputProps: {
+        type: 'select',
+      },
     },
     picture: {
       label: 'Profile Picture URL',
@@ -183,5 +200,6 @@ h1 {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 </style>
