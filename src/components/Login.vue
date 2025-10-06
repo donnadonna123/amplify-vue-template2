@@ -36,8 +36,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { signIn, SignInInput, getCurrentUser } from 'aws-amplify/auth';
-
+import { signIn, getCurrentUser } from 'aws-amplify/auth';
+import type { SignInInput } from 'aws-amplify/auth';
 interface FormData {
   username: string;
   password: string;
