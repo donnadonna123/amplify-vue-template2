@@ -1,18 +1,7 @@
 <!-- src/components/Navbar.vue -->
 <template>
-  <nav>
-    <ul>
-      <li>
-        <router-link to="../">Home</router-link>
-      </li>
-      <li>
-        <router-link to="../views/userhome">My Story</router-link>
-      </li>
-      <li>
-        <router-link to="../view/login">Login</router-link>
-      </li>
-    </ul>
-  </nav>
+   <div>Header</div>
+   
 </template>
 
 <script setup lang="ts">

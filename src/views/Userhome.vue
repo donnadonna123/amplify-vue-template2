@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>User Home</h1>
+    <h1>User Home-My story</h1>
     <p>Welcome, {{ userName }}!</p>
     <button @click="handleSignOut">Sign Out</button>
   </div>
