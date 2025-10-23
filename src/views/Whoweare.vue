@@ -10,7 +10,6 @@
 
 Engage in uncovering our family history and fostering meaningful relationships with our elders. Through this process, we can preserve their stories, wisdom, and experiences for future generations.</li>
   <li><b>Empower Students as Interviewers</b><br>
-
 When students take on the role of interviewer, they gain valuable skills such as conducting interviews, identifying key themes, and writing concise summaries. Additionally, they learn to appreciate the educational differences between their own experiences and those of the interviewees, fostering a deeper understanding of generational perspectives.</li>
   <li><b>Understand Through the Lens of Family History</b><br>
   Enable interviewers to empathize with the unique challenges and triumphs of their family elders. By listening to their stories, we can better understand the struggles they faced coming to and living in the United States, as seen through the lens of individual family experiences.
