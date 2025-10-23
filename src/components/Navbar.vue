@@ -1,54 +1,51 @@
-<!-- src/components/Navbar.vue -->
-<template>
-  <nav>
-    <ul>
-      <li>
-        <router-link to="../">Home</router-link>
-      </li>
-      <li>
-        <router-link to="../views/userhome">My Story</router-link>
-      </li>
-      <li>
-        <router-link to="../view/login">Login</router-link>
-      </li>
-    </ul>
-  </nav>
-</template>
+<!-- components/NavBar.vue -->
+    <template>
+      <nav class="navbar">
+      
+        <router-link class="nav-links" to="/">Home</router-link>
+        <router-link class="nav-links" to="/whoweare">Who we are</router-link>
+        <router-link class="nav-links" to="/login">Login</router-link>
+        <router-link class="nav-links" to="/Signup">Sign Up</router-link>
+        <router-link class="nav-links" to="/Userhome">User Home</router-link>
+        
+        <!-- ... other navigation links -->
+      </nav>
+    
+    </template>
 
-<script setup lang="ts">
-// No additional script logic needed
+   <script>
+export default {
+  name: 'Navbar',
+  props: {
+    user: {
+      type: Object,
+      default: null
+    }
+  }
+}
 </script>
 
 <style scoped>
-nav {
-  background-color: #2c3e50;
-  padding: 1rem;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.navbar {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1px 10px;
+    
 }
-li {
-  display: inline;
+
+.nav-links {
+  
+   padding: 1px 5px;
+
 }
-a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
+
+.nav-links a {
+  color: green;
+  
 }
-a:hover {
-  color: #42b983;
-}
-.router-link-exact-active {
-  color: #42b983;
-  font-weight: bold;
+
+.nav-links a:hover {
+  color: green;
 }
 </style>

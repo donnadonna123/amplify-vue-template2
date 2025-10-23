@@ -4,37 +4,41 @@
     <div class="header-container">
       <!-- Logo -->
       <div class="logo">
-      <img src="/images/logo.jpg" width="150" alt="Home Image"  >
+      <h1>My Header</h1>
 
       </div>
 
       <!-- Navigation -->
-      <navbar />
+           <nav>Navbar
+        <router-link to="/">Home</router-link>
+        <router-link to="/about">About</router-link>
+        <!-- ... other navigation links -->
+      </nav>
+
       <!-- Mobile Menu Button -->
-      searching box
-    
+      <button 
+        class="mobile-menu-btn"
+        @click="toggleMobileMenu"
+        :aria-expanded="isMobileMenuOpen"
+      >
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </header>
 </template>
 
- 
-
-<script>
-import Navbar from './Navbar.vue'
-
-export default {
-  name: 'Header',
-  components: {
-    Navbar
-  },
-  props: {
-    user: {
-      type: Object,
-      default: null
-    }
-  }
+<script >
+import { ref } from 'vue'
+const isMobileMenuOpen = ref(false)
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
+import NavBar from '../components/NavBar.vue';
 </script>
+
+npm
 
 <style scoped>
 .app-header {
@@ -82,7 +86,13 @@ export default {
   padding: 0.5rem;
 }
 
- 
+.hamburger-line {
+  width: 25px;
+  height: 3px;
+  background-color: #2c3e50;
+  margin: 3px 0;
+  transition: 0.3s;
+}
 
 @media (max-width: 768px) {
   .mobile-menu-btn {

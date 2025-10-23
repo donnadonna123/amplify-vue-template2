@@ -1,17 +1,26 @@
 <!-- src/components/Home.vue -->
 <template>
   <div>
-    <h1>Welcome to the Home Page</h1>
-    <p>This is the home page of your Vue app.</p>
+      <header>
+      <img src="/images/home.png" alt="Home Image"  >
+    </header>
+    <h1>Welcome to the Home Page!!</h1>
+    <h2>At Family Stories,</h2>
+    <h3>We provide a unique opportunity </h3>
+    <p>for families of the Chinese Diaspora to preserve their immigrant experiences. This is a space where family
+      members interview one another, ensuring that the narrative of their family's journey remains authentic and firmly
+      in their hands. It's a place where families take control of their own stories, creating a lasting legacy for
+      future generations.</p>
+       
+       <img src="/images/principle.png" width="150" alt="Principle"  >
+      <p>is that these interviews and
+other family records reflect the perspectives of the interviewees and their family. While the interview files are archived by the Evergreen Family Stories System, the family—particularly the interviewee—retains control over who, aside from the system admin, can access the files and under what circumstances. </p>
+  
+  <p>Preserving the Immigrant Experience.</p>
+<p>Your Family's Story, in Your Words. </p>
+<button>Create and interview</button>
   </div>
 </template>
 
-<script setup lang="ts">
-// No additional script logic needed for now
-</script>
 
-<style scoped>
-h1 {
-  color: #2c3e50;
-}
-</style>
+

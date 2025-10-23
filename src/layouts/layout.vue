@@ -1,43 +1,38 @@
-<!-- src/components/Navbar.vue -->
+<!-- src/layouts/Layout.vue -->
 <template>
-   <div>Header</div>
-   
+  <div class="default-layout">
+    <Header />
+    <main class="main-content">
+      <div class="container">
+        <main>
+          <router-view /> <!-- Child routes render here -->
+        </main>
+        
+      </div>
+    </main>
+    <Footer />
+  </div>
 </template>
 
-<script setup lang="ts">
-// No additional script logic needed
-</script>
 
-<style scoped>
-nav {
-  background-color: #2c3e50;
-  padding: 1rem;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-li {
-  display: inline;
-}
-a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
-}
-a:hover {
-  color: #42b983;
-}
-.router-link-exact-active {
-  color: #42b983;
-  font-weight: bold;
-}
-</style>
+<script>
+import Header from '../components/Header.vue';
+import Footer from '../components/Footer.vue';
+
+
+export default {
+  name: 'Layout',
+  components: {
+    Header,
+    Footer,
+  },
+   props: {
+    user: {
+      type: Object,
+      default: null
+    }
+  }
+};
+
+ 
+</script>
