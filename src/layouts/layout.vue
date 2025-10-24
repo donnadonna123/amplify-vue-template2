@@ -4,9 +4,9 @@
     <Header />
     <main class="main-content">
       <div class="container">
-        <main>
+        
           <router-view /> <!-- Child routes render here -->
-        </main>
+         
         
       </div>
     </main>
@@ -19,7 +19,9 @@
 import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
 
+import { useRoute } from 'vue-router';
 
+  
 export default {
   name: 'Layout',
   components: {

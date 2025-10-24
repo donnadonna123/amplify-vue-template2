@@ -17,6 +17,7 @@ import Whoweareteam from "@/views/Whoweareteam.vue";
 import { getCurrentUser } from 'aws-amplify/auth';
 
 
+
 const routes = [
   {
     path: '/',
@@ -28,20 +29,24 @@ const routes = [
         component: Home
       },
       {
-        path: '/whoweare',
-        name: 'whoweare',
-        component: Whoweare
+        path: '/Whoweare',
+        name: 'Whoweare',
+        component: Whoweare,
+        children: [
+          {
+            path: '/Whoweareteam',
+            name: 'Whoweareteam',
+            component: Whoweareteam
+          },
+           {
+            path: '/Whowearestory',
+            name: 'Whowearestory',
+            component: Whowearestory
+          },
+        ],
+  
       },
-      {
-          path: '/Whoweareteam',
-          name: 'Whoweareteam',
-          component: Whoweareteam
-      },
-    {
-          path: '/Whowearestory',
-          name: 'Whowearestory',
-          component: Whowearestory
-      },
+      
       {
         path: '/login',
         name: 'Login',
@@ -61,8 +66,6 @@ const routes = [
     ]
   }
 ]
-
-
 
 const router = createRouter({
   history: createWebHistory(),

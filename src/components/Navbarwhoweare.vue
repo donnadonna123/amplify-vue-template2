@@ -11,11 +11,10 @@
     </template>
 
    <script>
-export default {
-  name: 'Navbarwhoweare',
-
-}
-</script>
+    export default {
+    name: 'Navbarwhoweare',
+    }
+  </script>
 
 <style scoped>
 .navbarw {
