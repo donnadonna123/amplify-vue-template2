@@ -16,12 +16,7 @@
    <script>
 export default {
   name: 'Navbar',
-  props: {
-    user: {
-      type: Object,
-      default: null
-    }
-  }
+
 }
 </script>
 

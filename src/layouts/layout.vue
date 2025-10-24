@@ -26,12 +26,7 @@ export default {
     Header,
     Footer,
   },
-   props: {
-    user: {
-      type: Object,
-      default: null
-    }
-  }
+
 };
 
  

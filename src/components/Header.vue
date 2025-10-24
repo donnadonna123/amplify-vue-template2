@@ -9,7 +9,7 @@
       </div>
 
       <!-- Navigation -->
-      <navbar />
+      <Navbar />
       <!-- Mobile Menu Button -->
       searching box
     

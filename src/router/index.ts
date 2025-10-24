@@ -29,8 +29,8 @@ const routes = [
         component: Home
       },
       {
-        path: '/whoweare',
-        name: 'whoweare',
+        path: '/Whoweare',
+        name: 'Whoweare',
         component: Whoweare
       },
       {

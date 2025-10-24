@@ -2,9 +2,9 @@
     <template>
       <nav class="navbarw">
       
-        <router-link class="nav-linkswho" to="/whoweare">Our Mission</router-link>
-        <router-link class="nav-linkswho" to="/whowearestory">Our Story</router-link>
-        <router-link class="nav-linkswho" to="/whoweareteam">Our Team</router-link>      
+        <router-link class="nav-linkswho" to="/Whoweare">Our Mission</router-link>
+        <router-link class="nav-linkswho" to="/Whowearestory">Our Story</router-link>
+        <router-link class="nav-linkswho" to="/Whoweareteam">Our Team</router-link>      
         <!-- ... other navigation links -->
       </nav>
     
@@ -13,12 +13,7 @@
    <script>
 export default {
   name: 'Navbarwhoweare',
-  props: {
-    user: {
-      type: Object,
-      default: null
-    }
-  }
+
 }
 </script>
 
