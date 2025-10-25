@@ -27,10 +27,16 @@ const routes = [
         name: 'Home',
         component: Home
       },
+
       {
         path: '/whoweare',
         name: 'whoweare',
         component: Whoweare
+      },
+      {
+        path: '/whowearemission',
+        name: 'whowearemission',
+        redirect: Whoweare
       },
       {
           path: '/Whoweareteam',
