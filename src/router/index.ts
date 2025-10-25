@@ -9,7 +9,7 @@ import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
 import Signup from "@/views/Signup.vue";
 import Userhome from "@/views/Userhome.vue";
-import Whowearemission from "@/views/Whowearemission.vue";
+import Whoweare from "@/views/Whoweare.vue";
 import Whowearestory from "@/views/Whowearestory.vue";
 import Whoweareteam from "@/views/Whoweareteam.vue";
 
@@ -30,14 +30,9 @@ const routes = [
       {
         path: '/whoweare',
         name: 'whoweare',
-        redirect: 'Whowearemission'
+        component: Whoweare
       },
-      {
-        path: '/whowearemission',
-        name: 'whowearemission',
-        component: Whowearemission
-      },
-      {
+            {
           path: '/Whoweareteam',
           name: 'Whoweareteam',
           component: Whoweareteam
