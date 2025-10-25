@@ -2,8 +2,9 @@
 <template>
   <div>
   <img src="/images/whoweare.jpg" alt="Whoweare Image"  >
-    <h1>Who we are</h1>
-    <Navbarwhoweare />
+      <Navbarwhoweare />
+    <h1>Who we are/Our Mission</h1>
+
 
  <ol style="text-align:left;">
  <li><b>Discover Our Roots and Build Connections with Family Elders</b><br>

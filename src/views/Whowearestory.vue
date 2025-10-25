@@ -2,8 +2,9 @@
 <template>
   <div>
   <img src="/images/whoweare.jpg" alt="Whoweare Image"  >
-    <h1>Our Story</h1>
+
     <Navbarwhoweare />
+    <h1>Our Story</h1>
 
  <ol>
  <li>Our Story of doing Oral History started in 2009 with a PBL(Project Based Learning) program of small projects in Western China.</li>
