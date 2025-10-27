@@ -1,4 +1,4 @@
-<template>
+for<template>
   <div class="signup-container">
     <h2>Sign Up</h2>
     <form v-if="!showConfirmation" @submit.prevent="handleSignUp">

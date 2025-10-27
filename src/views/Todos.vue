@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import '@/assets/main.css';
+
 import { onMounted, ref } from 'vue';
 import type { Schema } from '../../amplify/data/resource';
 import { generateClient } from 'aws-amplify/data';
@@ -34,7 +34,8 @@ function createTodo() {
 </script>
 
 <template>
-  <main>
+<div>
+
     <h1>My todos</h1>
     <button @click="createTodo">+ new</button>
     <ul>
@@ -51,5 +52,5 @@ function createTodo() {
         Review next steps of this tutorial.
       </a>
     </div>
-  </main>
+</div>
 </template>

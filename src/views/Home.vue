@@ -1,9 +1,9 @@
 <!-- src/components/Home.vue -->
 <template>
   <div>
-      <header>
-      <img src="/images/home.png" alt="Home Image"  >
-    </header>
+  
+    <img src="/images/home.png" alt="Home Image"  >
+  
     <h1>Welcome to the Home Page!!</h1>
     <h2>At Family Stories,</h2>
     <h3>We provide a unique opportunity </h3>
