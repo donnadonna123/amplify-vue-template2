@@ -18,8 +18,7 @@ const handleConfirm = async () => {
   if (message.value === 'Password successfully reset.') {
     // Redirect to login page
     message.value = 'Redirecting to login...';
-    router.refresh();
-    router.push('/Login');
+
   }
 
   
