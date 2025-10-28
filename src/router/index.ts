@@ -13,7 +13,9 @@ import Whoweare from "@/views/Whoweare.vue";
 import Whowearestory from "@/views/Whowearestory.vue";
 import Whoweareteam from "@/views/Whoweareteam.vue";
 import Todos from "@/views/Todos.vue";
+import ResetPassword from "@/views/ResetPassword.vue";
 import Uploadvideo from "@/views/Uploadvideo.vue";
+
 
 import { getCurrentUser } from 'aws-amplify/auth';
 
@@ -63,6 +65,11 @@ const routes = [
         path: '/login',
         name: 'Login',
         component: Login
+      },
+      {
+        path: '/ResetPassword',
+        name: 'ResetPassword',
+        component: ResetPassword
       },
       {
         path: '/signup',

@@ -26,6 +26,9 @@
       <p>
         Don't have an account? <router-link to="/signup">Sign Up</router-link>
       </p>
+            <p>
+       Forgot password? <router-link to="/ResetPassword">Reset Password</router-link>
+      </p>
     </form>
     <p v-else>
       You are already logged in. <router-link to="/userhome">Go to User Home</router-link>

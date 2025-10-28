@@ -5,6 +5,7 @@ export const auth = defineAuth({
   loginWith: {
     email: true, // Keep email as the login mechanism
   },
+  accountRecovery: 'EMAIL_ONLY', // or 'PHONE_AND_EMAIL',
   userAttributes: {
     birthdate: { mutable: true, required: false },
     email: { mutable: true, required: true },
