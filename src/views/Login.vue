@@ -1,140 +1,78 @@
+
 <template>
-  <div class="login-container">
-    <h2>Login</h2>
-    <form v-if="!isAuthenticated" @submit.prevent="handleSignIn">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          id="email"
-          v-model="formData.username"
-          type="email"
-          placeholder="Enter your email"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          v-model="formData.password"
-          type="password"
-          placeholder="Enter your password"
-          required
-        />
-      </div>
-      <button type="submit">Login</button>
-      <p>
-        Don't have an account? <router-link to="/signup">Sign Up</router-link>
-      </p>
-            <p>
-       Forgot password? <router-link to="/ResetPassword">Reset Password</router-link>
-      </p>
-    </form>
-    <p v-else>
-      You are already logged in. <router-link to="/userhome">Go to User Home</router-link>
-    </p>
-    <p v-if="message" class="message">{{ message }}</p>
-  </div>
+  <authenticator>
+    <template v-slot:sign-in>
+      <form @submit.prevent="handleSignIn">
+        <div>
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            v-model="email"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <div class="password-wrapper">
+            <input
+              id="password"
+              :type="showPassword ? 'text' : 'password'"
+              v-model="password"
+              required
+            />
+            <button type="button" @click="togglePassword">
+              {{ showPassword ? 'Hide' : 'Show' }}
+            </button>
+          </div>
+        </div>
+
+        <button type="submit">Sign In</button>
+        <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+      </form>
+    </template>
+  </authenticator>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { signIn, getCurrentUser } from 'aws-amplify/auth';
-import type { SignInInput } from 'aws-amplify/auth';
-interface FormData {
-  username: string;
-  password: string;
+<script setup>
+import { ref } from 'vue'
+import { signIn } from 'aws-amplify/auth'
+import { Authenticator } from '@aws-amplify/ui-vue'
+
+const email = ref('')
+const password = ref('')
+const showPassword = ref(false)
+const errorMessage = ref('')
+
+const togglePassword = () => {
+  showPassword.value = !showPassword.value
 }
 
-export default defineComponent({
-  name: 'Login',
-  data(): {
-    formData: FormData;
-    isAuthenticated: boolean;
-    message: string;
-  } {
-    return {
-      formData: {
-        username: '',
-        password: '',
-      },
-      isAuthenticated: false,
-      message: '',
-    };
-  },
-  async created() {
-    await this.checkAuthState();
-  },
-  methods: {
-    async checkAuthState() {
-      try {
-        await getCurrentUser();
-        this.isAuthenticated = true;
-        this.message = 'You are already authenticated.';
-      } catch (error) {
-        this.isAuthenticated = false;
-        console.log('Not authenticated:', error);
-      }
-    },
-    async handleSignIn() {
-      try {
-        const signInInput: SignInInput = {
-          username: this.formData.username,
-          password: this.formData.password,
-        };
-        const response = await signIn(signInInput);
-        console.log('Sign-in response:', response);
-        this.message = 'Login successful!';
-        this.$router.push('/userhome');
-      } catch (error: any) {
-        this.message = `Login error: ${error.message || 'An error occurred'}`;
-        console.error('Login error:', error);
-      }
-    },
-  },
-});
+const handleSignIn = async () => {
+  try {
+    await signIn({ username: email.value, password: password.value })
+    errorMessage.value = ''
+    // Redirect or update UI
+  } catch (error) {
+    errorMessage.value = error.message || 'Login failed'
+  }
+}
 </script>
 
 <style scoped>
-.login-container {
-  max-width: 400px;
-  margin: 80px auto 20px; /* Offset for fixed navbar */
-  padding: 20px;
+.password-wrapper {
+  display: flex;
+  align-items: center;
 }
-.form-group {
-  margin-bottom: 15px;
+.password-wrapper input {
+  flex: 1;
 }
-label {
-  display: block;
-  margin-bottom: 5px;
+.password-wrapper button {
+  margin-left: 8px;
 }
-input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #0056b3;
-}
-.message {
+.error {
+  color: red;
   margin-top: 10px;
-  color: #333;
-}
-a {
-  color: #007bff;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
 }
 </style>
