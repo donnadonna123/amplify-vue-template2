@@ -13,7 +13,7 @@
           />
         </div>
 
-        <div>
+        <div style="width: 50%; margin: auto;">
           <label for="password">Password</label>
           <div class="password-wrapper">
             <input
@@ -62,6 +62,7 @@ const handleSignIn = async () => {
 </script>
 
 <style scoped>
+ 
 .password-wrapper {
   display: flex;
   align-items: center;

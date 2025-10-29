@@ -14,7 +14,7 @@ import Whowearestory from "@/views/Whowearestory.vue";
 import Whoweareteam from "@/views/Whoweareteam.vue";
 import Todos from "@/views/Todos.vue";
 import ResetPassword from "@/views/ResetPassword.vue";
- 
+import Uploadvideo from "@/views/Uploadvideo.vue";
 
 import { getCurrentUser } from 'aws-amplify/auth';
 
@@ -54,6 +54,11 @@ const routes = [
           path: '/Todos',
           name: 'Todos',
           component: Todos
+      },
+      {
+        path: '/Uploadvideo',
+        name: 'Uploadvideo',
+        component: Uploadvideo
       },
        {
         path: '/login',
