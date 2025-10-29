@@ -55,12 +55,7 @@ const routes = [
           name: 'Todos',
           component: Todos
       },
-      {
-          path: '/Uploadvideo',
-          name: 'Uploadvideo',
-          component: Uploadvideo
-      },
-      {
+       {
         path: '/login',
         name: 'Login',
         component: Login
