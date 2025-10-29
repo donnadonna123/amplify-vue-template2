@@ -1,7 +1,7 @@
-
 <template>
-  <authenticator>
-    <template v-slot:sign-in>
+<h1>Login</h1>
+  
+ 
       <form @submit.prevent="handleSignIn">
         <div>
           <label for="email">Email</label>
@@ -31,8 +31,9 @@
         <button type="submit">Sign In</button>
         <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
       </form>
-    </template>
-  </authenticator>
+  
+  
+
 </template>
 
 <script setup>
