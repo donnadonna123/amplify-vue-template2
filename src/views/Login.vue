@@ -15,7 +15,7 @@
       <div class="form-group">
         <label for="password">Password</label>
         <input
-          id="password"
+          id="passshowPassword ? 'text' : 'password'word"
           v-model="formData.password"
           type="password"
           placeholder="Enter your password"
