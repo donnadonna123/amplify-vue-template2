@@ -13,12 +13,11 @@
         />
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input
+          <PasswordToggle
           id="password"
-          v-model="formData.password"
-          type="password"
+          v-model="password"
           placeholder="Enter your password"
+          class="form-input"
           required
         />
       </div>
@@ -46,8 +45,13 @@ interface FormData {
   password: string;
 }
 
+import PasswordToggle from '@/components/PasswordToggle.vue';
+
 export default defineComponent({
   name: 'Login',
+  components: {
+    PasswordToggle
+  },
   data(): {
     formData: FormData;
     isAuthenticated: boolean;
