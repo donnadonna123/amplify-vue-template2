@@ -15,7 +15,7 @@
       <div class="form-group">
         <label for="password">Password</label>
         <input
-          id="passshowPassword ? 'text' : 'password'word"
+          id="showPassword ? 'text' : 'password'"
           v-model="formData.password"
           type="password"
           placeholder="Enter your password"
@@ -38,9 +38,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { ref, defineComponent } from 'vue';
 import { signIn, getCurrentUser } from 'aws-amplify/auth';
 import type { SignInInput } from 'aws-amplify/auth';
+const showPassword = ref(false)
+
 interface FormData {
   username: string;
   password: string;
