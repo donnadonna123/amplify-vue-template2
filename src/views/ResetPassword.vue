@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { initiateResetPassword, confirmPasswordReset } from '@/composables/useResetPassword'
-import { useRouter } from 'vue-router'
 
 const email = ref('')
 const code = ref('')
 const newPassword = ref('')
 const step = ref<'init' | 'confirm'>('init')
 const message = ref('')
-const router = useRouter()
 
 const handleInitiate = async () => {
   message.value = await initiateResetPassword(email.value);
@@ -20,7 +18,7 @@ const handleConfirm = async () => {
   if (message.value === 'Password successfully reset.') {
     // Redirect to login page
     message.value = 'Redirecting to login...';
-    router.push('/login')
+
   }
 
   
