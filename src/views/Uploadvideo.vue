@@ -114,7 +114,7 @@ const uploadVideo = async () => {
     
     // Optional: Redirect to videos list after successful upload
     setTimeout(() => {
-      router.push('/videos');
+      router.push('/Videolist');
     }, 2000);
 
   } catch (err) {
@@ -186,30 +186,3 @@ const uploadVideo = async () => {
   margin: 1rem 0;
 }
 </style>
-
-4. Vue Router Configuration
-typescript
-
-// src/router/index.ts
-import { createRouter, createWebHistory } from 'vue-router';
-import UploadVideo from '../views/UploadVideo.vue';
-
-const routes = [
-  {
-    path: '/upload',
-    name: 'UploadVideo',
-    component: UploadVideo
-  },
-  {
-    path: '/videos',
-    name: 'Videos',
-    component: () => import('../views/VideoList.vue')
-  }
-];
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes
-});
-
-export default router;
