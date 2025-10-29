@@ -1,156 +1,140 @@
 <template>
   <div class="login-container">
-    <form @submit.prevent="handleLogin" class="login-form">
-      <h2>Sign In</h2>
-      
+    <h2>Login</h2>
+    <form v-if="!isAuthenticated" @submit.prevent="handleSignIn">
       <div class="form-group">
         <label for="email">Email</label>
         <input
           id="email"
-          v-model="email"
+          v-model="formData.username"
           type="email"
           placeholder="Enter your email"
           required
-          class="form-input"
         />
       </div>
-
       <div class="form-group">
         <label for="password">Password</label>
-        <PasswordToggle
+        <input
           id="password"
-          v-model="password"
+          v-model="formData.password"
+          type="password"
           placeholder="Enter your password"
-          class="form-input"
           required
         />
       </div>
-
-      <button type="submit" class="login-button" :disabled="loading">
-        {{ loading ? 'Signing In...' : 'Sign In' }}
-      </button>
-
-      <div v-if="error" class="error-message">
-        {{ error }}
-      </div>
+      <button type="submit">Login</button>
+      <p>
+        Don't have an account? <router-link to="/signup">Sign Up</router-link>
+      </p>
+            <p>
+       Forgot password? <router-link to="/ResetPassword">Reset Password</router-link>
+      </p>
     </form>
+    <p v-else>
+      You are already logged in. <router-link to="/userhome">Go to User Home</router-link>
+    </p>
+    <p v-if="message" class="message">{{ message }}</p>
   </div>
 </template>
 
-<script>
-import { Auth } from 'aws-amplify';
-import PasswordToggle from '@/components/PasswordToggle.vue';
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { signIn, getCurrentUser } from 'aws-amplify/auth';
+import type { SignInInput } from 'aws-amplify/auth';
+interface FormData {
+  username: string;
+  password: string;
+}
 
-export default {
+export default defineComponent({
   name: 'Login',
-  components: {
-    PasswordToggle
-  },
-  data() {
+  data(): {
+    formData: FormData;
+    isAuthenticated: boolean;
+    message: string;
+  } {
     return {
-      email: '',
-      password: '',
-      loading: false,
-      error: ''
-    }
+      formData: {
+        username: '',
+        password: '',
+      },
+      isAuthenticated: false,
+      message: '',
+    };
+  },
+  async created() {
+    await this.checkAuthState();
   },
   methods: {
-    async handleLogin() {
-      this.loading = true;
-      this.error = '';
-      
+    async checkAuthState() {
       try {
-        const user = await Auth.signIn(this.email, this.password);
-        console.log('Login successful:', user);
-        
-        // Redirect or emit success event
-        this.$emit('login-success', user);
-        
+        await getCurrentUser();
+        this.isAuthenticated = true;
+        this.message = 'You are already authenticated.';
       } catch (error) {
-        console.error('Login error:', error);
-        this.error = this.getErrorMessage(error);
-      } finally {
-        this.loading = false;
+        this.isAuthenticated = false;
+        console.log('Not authenticated:', error);
       }
     },
-    
-    getErrorMessage(error) {
-      switch (error.code) {
-        case 'UserNotFoundException':
-          return 'User not found. Please check your email.';
-        case 'NotAuthorizedException':
-          return 'Incorrect password. Please try again.';
-        case 'UserNotConfirmedException':
-          return 'Please confirm your email address before signing in.';
-        default:
-          return error.message || 'An error occurred during sign in.';
+    async handleSignIn() {
+      try {
+        const signInInput: SignInInput = {
+          username: this.formData.username,
+          password: this.formData.password,
+        };
+        const response = await signIn(signInInput);
+        console.log('Sign-in response:', response);
+        this.message = 'Login successful!';
+        this.$router.push('/userhome');
+      } catch (error: any) {
+        this.message = `Login error: ${error.message || 'An error occurred'}`;
+        console.error('Login error:', error);
       }
-    }
-  }
-}
+    },
+  },
+});
 </script>
 
 <style scoped>
 .login-container {
   max-width: 400px;
-  margin: 50px auto;
+  margin: 80px auto 20px; /* Offset for fixed navbar */
   padding: 20px;
 }
-
-.login-form {
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
-
-.form-group label {
+label {
   display: block;
   margin-bottom: 5px;
-  font-weight: 500;
-  color: #374151;
 }
-
-.form-input {
+input {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 14px;
-  box-sizing: border-box;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
-
-.login-button {
+button {
   width: 100%;
-  background: #007bff;
+  padding: 10px;
+  background-color: #007bff;
   color: white;
   border: none;
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.login-button:hover:not(:disabled) {
-  background: #0056b3;
-}
-
-.login-button:disabled {
-  background: #6c757d;
-  cursor: not-allowed;
-}
-
-.error-message {
-  color: #dc3545;
-  margin-top: 15px;
-  padding: 10px;
-  background: #f8d7da;
-  border: 1px solid #f5c6cb;
   border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0056b3;
+}
+.message {
+  margin-top: 10px;
+  color: #333;
+}
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
 </style>
