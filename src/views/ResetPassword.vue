@@ -22,11 +22,8 @@ const handleConfirm = async () => {
     message.value = 'Redirecting to login...';
     router.push('/Login');
   }
-
-  
 }
 
- 
 </script>
 
 <template>
