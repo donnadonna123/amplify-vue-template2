@@ -7,6 +7,7 @@
         <router-link class="nav-links" to="/login">Login</router-link>
         <router-link class="nav-links" to="/Signup">Sign Up</router-link>
         <router-link class="nav-links" to="/Userhome">User Home</router-link>
+          <router-link class="nav-links" to="/Uploadvideo">Upload video</router-link>          
           <router-link class="nav-links" to="/Todos">To do lists</router-link>      
   
         <!-- ... other navigation links -->
