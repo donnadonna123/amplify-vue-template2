@@ -1,100 +1,52 @@
 <template>
-<h1>Login</h1>
-  
-      <div v-if="checkingAuth" class="loading">
-      Checking authentication...
-    </div>
-    
-    <div v-else-if="isAuthenticated" class="already-logged-in">
-      <h2>You're already logged in!</h2>
-      <p>Redirecting to home page...</p>
-      <router-link to="/Userhome"  >Go to your Home page</router-link>
-    </div>
- 
-      <form @submit.prevent="handleSignIn">
-        <div>
-          <label for="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            v-model="email"
-            required
-          />
-        </div>
-
-        <div style="width: 50%; margin: auto;">
-          <label for="password">Password</label>
-          <div class="password-wrapper">
-            <input
-              id="password"
-              :type="showPassword ? 'text' : 'password'"
-              v-model="password"
-              required
-            />
-            <button type="button" @click="togglePassword">
-              {{ showPassword ? 'Hide' : 'Show' }}
-            </button>
-          </div>
-        </div>
-
-        <button type="submit">Sign In</button>
-        <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+  <authenticator
+    :login-mechanisms="['email']"
+   
+    :sign-up-attributes="['email', 'given_name', 'family_name']"
+  >
+    <template #default="{ user, signOut }">
+      <div  >
         
-      </form>
-  
-        <p>
-        Forgot Password <router-link to="/Resetpassword">Forgot password</router-link>
-        Sign UP <router-link to="/Signup">Sign Up</router-link>
-      </p>
+          <span>Welcome, {{ user.attributes?.email }}!</span><br>
 
+           <LoginRedirectHandler :user="user" />
+            <router-link  to="/Userhome">User Home</router-link><br>
+          <button @click="signOut" class="sign-out-btn">Sign Out</button>
+       
+ 
+      </div>
+    </template>
+    
+    <template #sign-in-header>
+      <div class="custom-header">
+        <h2>Welcome to My App</h2>
+        <p>Please sign in to continue</p>
+      </div>
+    </template>
+  </authenticator>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { signIn } from 'aws-amplify/auth'
 import { Authenticator } from '@aws-amplify/ui-vue'
-import { useRouter } from 'vue-router'
- 
-
-const email = ref('')
-const password = ref('')
-const showPassword = ref(false)
-const errorMessage = ref('')
-const router = useRouter();
-
-const togglePassword = () => {
-  showPassword.value = !showPassword.value
-}
-
-const handleSignIn = async () => {
-  try {
-    await signIn({ username: email.value, password: password.value })
-    errorMessage.value = ''
-    // Redirect or update UI
-    router.push('/Userhome')
-  } catch (error) {
-    errorMessage.value = error.message || 'Login failed'
-  }
-}
-
+import '@aws-amplify/ui-vue/styles.css'
+import { useRouter } from 'vue-router';
+import LoginRedirectHandler from '@/components/Userhome.vue'
 
 
 </script>
+<style>
+.sign-out-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
 
-<style scoped>
- 
-.password-wrapper {
-  display: flex;
-  align-items: center;
-}
-.password-wrapper input {
-  flex: 1;
-}
-.password-wrapper button {
-  margin-left: 8px;
-}
-.error {
-  color: red;
-  margin-top: 10px;
+.sign-out-btn:hover {
+  background: #c0392b;
 }
 </style>

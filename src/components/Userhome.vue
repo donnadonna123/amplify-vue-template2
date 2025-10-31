@@ -3,7 +3,7 @@
     <h1>User Home-My story</h1>
     <p>Welcome, {{ userName }}!</p>
     <p>Upload the video</p>
-    <button @click="handleSignOut">Sign Out</button>
+ 
   </div>
 </template>
 
