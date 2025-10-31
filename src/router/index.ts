@@ -77,7 +77,7 @@ const routes = [
         component: Signup
       },
       {
-        path: '/userhome',
+        path: '/Userhome',
         name: 'Userhome',
         component: Userhome,
         meta: { requiresAuth: true },
@@ -100,7 +100,7 @@ router.beforeEach(async (to, from, next) => {
       await getCurrentUser();
       next();
     } catch (error) {
-      next('/login');
+//      next('login');
     }
   } else {
     next();
