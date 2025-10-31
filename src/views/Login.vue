@@ -30,7 +30,7 @@
 import { Authenticator } from '@aws-amplify/ui-vue'
 import '@aws-amplify/ui-vue/styles.css'
 import { useRouter } from 'vue-router';
-import LoginRedirectHandler from '@/components/Userhome.vue'
+import LoginRedirectHandler from '@/views/Userhome.vue'
 
 
 </script>

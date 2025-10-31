@@ -8,7 +8,7 @@ import Layout from "@/layouts/layout.vue";
 import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
 import Signup from "@/views/Signup.vue";
-import Userhome from "@/Components/Userhome.vue";
+import Userhome from "@/views/Userhome.vue";
 import Whoweare from "@/views/Whoweare.vue";
 import Whowearestory from "@/views/Whowearestory.vue";
 import Whoweareteam from "@/views/Whoweareteam.vue";
