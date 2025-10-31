@@ -1,6 +1,15 @@
 <template>
 <h1>Login</h1>
   
+      <div v-if="checkingAuth" class="loading">
+      Checking authentication...
+    </div>
+    
+    <div v-else-if="isAuthenticated" class="already-logged-in">
+      <h2>You're already logged in!</h2>
+      <p>Redirecting to home page...</p>
+      <router-link to="/Userhome"  >Go to your Home page</router-link>
+    </div>
  
       <form @submit.prevent="handleSignIn">
         <div>
@@ -30,9 +39,13 @@
 
         <button type="submit">Sign In</button>
         <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+        
       </form>
   
-  
+        <p>
+        Forgot Password <router-link to="/Resetpassword">Forgot password</router-link>
+        Sign UP <router-link to="/Signup">Sign Up</router-link>
+      </p>
 
 </template>
 
@@ -40,11 +53,14 @@
 import { ref } from 'vue'
 import { signIn } from 'aws-amplify/auth'
 import { Authenticator } from '@aws-amplify/ui-vue'
+import { useRouter } from 'vue-router'
+ 
 
 const email = ref('')
 const password = ref('')
 const showPassword = ref(false)
 const errorMessage = ref('')
+const router = useRouter();
 
 const togglePassword = () => {
   showPassword.value = !showPassword.value
@@ -55,10 +71,14 @@ const handleSignIn = async () => {
     await signIn({ username: email.value, password: password.value })
     errorMessage.value = ''
     // Redirect or update UI
+    router.push('/Userhome')
   } catch (error) {
     errorMessage.value = error.message || 'Login failed'
   }
 }
+
+
+
 </script>
 
 <style scoped>
