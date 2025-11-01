@@ -1,6 +1,7 @@
 // src/router/index.ts
 import { createRouter, createWebHistory} from 'vue-router';
- 
+import { getCurrentUser } from 'aws-amplify/auth';
+
 import Layout from "@/layouts/layout.vue";
 
 // Import your page components
@@ -8,7 +9,6 @@ import Layout from "@/layouts/layout.vue";
 import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
 import Signup from "@/views/Signup.vue";
-import Userhome from "@/views/Userhome.vue";
 import Whoweare from "@/views/Whoweare.vue";
 import Whowearestory from "@/views/Whowearestory.vue";
 import Whoweareteam from "@/views/Whoweareteam.vue";
@@ -16,7 +16,10 @@ import Todos from "@/views/Todos.vue";
 import ResetPassword from "@/views/ResetPassword.vue";
 import Uploadvideo from "@/views/Uploadvideo.vue";
 
-import { getCurrentUser } from 'aws-amplify/auth';
+
+
+
+
 
 
 const routes = [
@@ -79,9 +82,9 @@ const routes = [
       {
         path: '/Userhome',
         name: 'Userhome',
-        component: Userhome,
+        component: () => import('../views/Userhome.vue'),
         meta: { requiresAuth: true },
-      }
+      },
     ]
   }
 ]
@@ -93,14 +96,18 @@ const router = createRouter({
   routes,
 });
 
+
+
 // Navigation guard for protected routes
 router.beforeEach(async (to, from, next) => {
   if (to.meta.requiresAuth) {
     try {
       await getCurrentUser();
+      // allow to access
       next();
     } catch (error) {
-//      next('login');
+      
+      next('/login');
     }
   } else {
     next();
