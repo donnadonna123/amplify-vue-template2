@@ -1,7 +1,7 @@
 <template>
   <authenticator
     :login-mechanisms="['email']"
-   
+       :social-providers="['google', 'facebook']"
     :sign-up-attributes="['email', 'given_name', 'family_name']"
   >
     <template #default="{ user, signOut }">
