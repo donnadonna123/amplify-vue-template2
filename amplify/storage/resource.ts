@@ -1,15 +1,24 @@
+// amplify/storage/resource.ts
 import { defineStorage } from '@aws-amplify/backend';
 
 export const storage = defineStorage({
-  name: 'videoStorage',
+  name: 'videoStorage', // Amplify will CREATE this bucket automatically
   access: (allow) => ({
-     'videos/*': [
-      allow.guest.to(['read', 'write']),
+    // Public videos - anyone can read/write
+    'videos/*': [
+      allow.guest.to(['read', 'write', 'delete']),
       allow.authenticated.to(['read', 'write', 'delete'])
     ],
-    'thumbnails/*': [
-      allow.guest.to(['read']),
+    
+    // User-specific private videos
+    'private/{user_id}/*': [
+      allow.entity('identity').to(['read', 'write', 'delete'])
+    ],
+    
+    // Temporary uploads
+    'temp/*': [
+      allow.guest.to(['write', 'delete']),
       allow.authenticated.to(['read', 'write', 'delete'])
     ]
   })
-  });
+});
