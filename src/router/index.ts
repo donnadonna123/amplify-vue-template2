@@ -15,7 +15,7 @@ import Whoweareteam from "@/views/Whoweareteam.vue";
 import Todos from "@/views/Todos.vue";
 import ResetPassword from "@/views/ResetPassword.vue";
 import Uploadvideo from "@/views/Uploadvideo.vue";
-import Mission from "@/views/Mission.vue";
+import Xyz from "@/views/Xyz.vue";
 import Getstarted from "@/views/Getstarted.vue";
 import Contact from "@/views/Contact.vue";
 
@@ -40,9 +40,9 @@ const routes = [
         component: Whoweare
       },
       {
-          path: '/Mission',
-          name: 'Mission',
-          component: Mission
+          path: '/Xyz',
+          name: 'Xyz',
+          component: Xyz
       },
       {
           path: '/Whoweareteam',
