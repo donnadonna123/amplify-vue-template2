@@ -23,3 +23,8 @@ When students take on the role of interviewer, they gain valuable skills such as
  
   </div>
   </template>
+
+  <script setup>
+  import Navbarwhoweare from '../components/Navbarwhoweare.vue'
+ 
+</script>

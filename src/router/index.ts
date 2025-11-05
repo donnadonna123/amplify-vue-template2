@@ -19,6 +19,11 @@ import Xyz from "@/views/Xyz.vue";
 import Getstarted from "@/views/Getstarted.vue";
 import Contact from "@/views/Contact.vue";
 import Archivedstories from "@/views/Archivedstories.vue";
+import Faithstory from "@/views/Faithstory.vue";
+import Clarastory from "@/views/Clarastory.vue";
+import Changyustory from "@/views/Changyustory.vue";
+import Huangstory from "@/views/Huangstory.vue";
+
 
 
 
@@ -53,6 +58,26 @@ const routes = [
           path: '/Whowearestory',
           name: 'Whowearestory',
           component: Whowearestory
+      },
+    {
+          path: '/Faithstory',
+          name: 'Faithstory',
+          component: Faithstory
+      },
+         {
+          path: '/Clarastory',
+          name: 'Clarastory',
+          component: Clarastory
+      },
+          {
+          path: '/Huangstory',
+          name: 'Huangstory',
+          component: Huangstory
+      },
+      {
+          path: '/Changyustory',
+          name: 'Changyustory',
+          component: Changyustory
       },
       {
           path: '/Archivedstories',
