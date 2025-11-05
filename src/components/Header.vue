@@ -1,10 +1,13 @@
 <!-- src/components/AppHeader.vue -->
 <template>
   <header class="app-header">
+    <p>Logo: "Family Stories" in a elegant, serif font (e.g., Playfair Display or Merriweather).</p><br>
     <div class="header-container">
       <!-- Logo -->
-      <div class="logo">
-      <img src="/images/logo.jpg" width="150" alt="Home Image"  >
+      <div class="logo"><
+    
+      <img src="/images/logo.jpg" width="150" alt="Home Image"  ><br>
+      
 
       </div>
 

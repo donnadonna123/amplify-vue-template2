@@ -3,7 +3,7 @@
   <div>
   <img src="/images/whoweare.jpg" alt="Whoweare Image"  >
       <Navbarwhoweare />
-    <h1>Who we are</h1>
+    <h1>Mission</h1>
 
 
  <ol style="text-align:left;">

@@ -38,11 +38,7 @@ const routes = [
         name: 'whoweare',
         component: Whoweare
       },
-      {
-        path: '/whowearemission',
-        name: 'whowearemission',
-        redirect: Whoweare
-      },
+
       {
           path: '/Whoweareteam',
           name: 'Whoweareteam',
