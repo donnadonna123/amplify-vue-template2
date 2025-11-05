@@ -5,7 +5,6 @@
       <Navbarwhoweare />
     <h1>Mission</h1>
 
-
  <ol style="text-align:left;">
  <li><b>Discover Our Roots and Build Connections with Family Elders</b><br>
 
@@ -22,6 +21,7 @@ When students take on the role of interviewer, they gain valuable skills such as
     Add to the collective narrative of the Chinese Diaspora in the United States by sharing the unique perspectives of individual families. These personal stories enrich the broader historical record and highlight the diverse experiences of Chinese Americans.
   </li>
  </ol>
+ 
   </div>
 </template>
 

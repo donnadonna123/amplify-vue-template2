@@ -4,12 +4,14 @@
       
         <router-link class="nav-links" to="/">Home</router-link>
         <router-link class="nav-links" to="/whoweare">Who we are</router-link>
+        <router-link class="nav-links" to="/Signup">Archived stories</router-link>
+        <router-link class="nav-links" to="/Getstarted">Get started</router-link>       
         <router-link class="nav-links" to="/login">Login</router-link>
         <router-link class="nav-links" to="/Signup">Sign Up</router-link>
-        <router-link class="nav-links" to="/Signup">Archived stories</router-link>
-          <router-link class="nav-links" to="/Uploadvideo">Upload video</router-link>   
-              <router-link class="nav-links" to="/Uploadvideo">Contact</router-link>                
-          <router-link class="nav-links" to="/Todos">To do lists</router-link>      
+        <router-link class="nav-links" to="/Contact">Contact</router-link>  
+        
+        <router-link class="nav-links" to="/Uploadvideo">Upload video</router-link>                
+        <router-link class="nav-links" to="/Todos">To do lists</router-link>      
   
         <!-- ... other navigation links -->
       </nav>
@@ -28,7 +30,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1px 10px;
+  padding: 1px 5px;
     
 }
 

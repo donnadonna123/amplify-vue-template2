@@ -2,7 +2,7 @@
     <template>
       <nav class="navbarw">
       
-        <router-link class="nav-linkswho" to="/Whoweare">Our Mission</router-link>
+        <router-link class="nav-linkswho" to="/Mission">Our Mission</router-link>
         <router-link class="nav-linkswho" to="/Whowearestory">Our Story</router-link>
         <router-link class="nav-linkswho" to="/Whoweareteam">Our Team</router-link>      
         <!-- ... other navigation links -->

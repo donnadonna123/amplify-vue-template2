@@ -24,6 +24,8 @@
       </div>
     </template>
   </authenticator>
+<p>After login </p>
+  <img src="/images/Logininfo.jpg" alt="Login Info Image"  >
 </template>
 
 <script setup>
