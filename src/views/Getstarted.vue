@@ -24,7 +24,9 @@
 <p><b>I want to try this option [Button]</b></p>
 
 <h2>Sign up:</h2>
+
 <p>Please provide a log in with a drop down table of </p>
+<router-link  to="/Login">Login</router-link><br>
 <p></p>
 
 <h2>Please provide a log in with a drop down table of </h2>
@@ -35,6 +37,7 @@
 
 
 <script setup>
+import { useRouter } from 'vue-router';
   import Navbarwhoweare from '../components/Navbarwhoweare.vue'
  
 </script>
