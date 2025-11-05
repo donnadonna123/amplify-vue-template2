@@ -41,7 +41,7 @@ const routes = [
       },
       {
           path: '/Mission',
-          name: 'mission',
+          name: 'Mission',
           component: Mission
       },
       {
