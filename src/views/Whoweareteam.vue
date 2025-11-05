@@ -39,7 +39,7 @@
                 </div>
                 <div class="right">
                     <div class="member fade-in">
-                        <h3>Victor Xu <img src="/images/victor.jpg" alt="team member 1"></h3>
+                        <h3>Victor Xu <img src="/images/Victor.jpg" alt="team member 1"></h3>
                         <p>Technical team.</p>
                     </div>
                     <div class="member fade-in">
