@@ -18,7 +18,7 @@ import Uploadvideo from "@/views/Uploadvideo.vue";
 import Xyz from "@/views/Xyz.vue";
 import Getstarted from "@/views/Getstarted.vue";
 import Contact from "@/views/Contact.vue";
-
+import Archivedstories from "@/views/Archivedstories.vue";
 
 
 
@@ -53,6 +53,11 @@ const routes = [
           path: '/Whowearestory',
           name: 'Whowearestory',
           component: Whowearestory
+      },
+      {
+          path: '/Archivedstories',
+          name: 'Archivedstories',
+          component: Archivedstories
       },
       {
           path: '/Getstarted',

@@ -1,8 +1,19 @@
 <!-- src/components/AppFooter.vue -->
 <template>
   <footer class="app-footer">
-  <img src="/images/footer-logo.png" width="150" alt="Home Image"  >
- Footer
+  <img src="/images/footer-logo.png" width="150" alt="Home Image"  ><br>
+ <b>Quick Links: </b><br>
+Home<br>
+About Us or Who We Are<br>
+How It Works<br>
+Stories Archive<br>
+Contact<br>
+<b>Social Media Icons</b>: Facebook, Instagram, YouTube (optional).
+<b>Contact Info</b>:
+Email: 
+Phone: <br>
+<b>Copyright Notice</b>: 
+
   </footer>
 </template>
 

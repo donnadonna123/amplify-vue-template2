@@ -20,47 +20,37 @@
             <div class="team-member-content">
                 <div class="left">
                     <div class="member fade-in">
-                        <h3>Faith Chao</h3>
+                       <h3>Faith Chao <img src="/images/faith.jpg" alt="team member 1"></h3>
                         <p>The instigator, the one who conceived the idea and the  overall concept of this project. </p>
                     </div>
                     <div class="member fade-in">
-                        <h3>Winnie Wong</h3>
+                        <h3>Winnie Wong <img src="/images/winnie.jpg" alt="team member 1"></h3>
                         <p>The ‘CEO’, the one who organizes, manages and impliment the entire operation.</p>
                     </div>
                     <div class="member fade-in">
-                        <h3>Nancy Mackay</h3>
+                        <h3>Nancy Mackay <img src="/images/nancy.jpg" alt="team member 1"></h3>
                         <p>Our oral history guru. Our expert content consultant.</p>
                     </div>
                     <div class="member fade-in">
-                        <h3>Donna Yeung</h3>
+                        <h3>Donna Yeung <img src="/images/donna.jpg" alt="team member 1"></h3>
                         <p>Member of technical team, responsible for archiving and database.</p>
                     </div>
-                    <div class="member fade-in">
-                        <h3>Sam Chao</h3>
-                        <p>Member of technical team, Website developer.</p>
-                    </div>
+                    
                 </div>
                 <div class="right">
                     <div class="member fade-in">
-                        <h3>Victor Xu</h3>
+                        <h3>Victor Xu <img src="/images/victor.jpg" alt="team member 1"></h3>
                         <p>Technical team.</p>
                     </div>
                     <div class="member fade-in">
-                        <h3>Chang Chen</h3>
+                        <h3>Chang Chen <img src="/images/chang.jpg" alt="team member 1"></h3>
                         <p>Our legal consultant.</p>
                     </div>
                     <div class="member fade-in">
-                        <h3>Jerry Xu</h3>
+                        <h3>Jerry Xu <img src="/images/jerry.jpg" alt="team member 1"></h3>
                         <p>Head of our technical team in charge of transcription.</p>
                     </div>
-                    <div class="member fade-in">
-                        <h3>xxxx</h3>
-                        <p>Our website designer.</p>
-                    </div>
-                    <div class="member fade-in">
-                        <h3>xxxxx</h3>
-                        <p>Website coordinator and responsible for content review.</p>
-                    </div>
+                   
                 </div>
             </div>
         </div>

@@ -7,6 +7,13 @@
 
 
  <p>Our <b>Guiding Principle</b> is that these interviews and other family records <b>reflect the perspectives</b> of the interviewees and their family. While the interview files are archived by the Evergreen Family Stories System, the family—particularly the interviewee—<b>retains control</b> over who, aside from the system admin, can access the files and under what circumstances.</p>
+              
+
+
+  
+  
+  
+  
   </div>
 </template>
 
@@ -20,4 +27,5 @@
 h1 {
   color: #2c3e50;
 }
+
 </style>

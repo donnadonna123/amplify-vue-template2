@@ -4,7 +4,7 @@
       
         <router-link class="nav-links" to="/">Home</router-link>
         <router-link class="nav-links" to="/whoweare">Who we are</router-link>
-        <router-link class="nav-links" to="/Signup">Archived stories</router-link>
+        <router-link class="nav-links" to="/Archivedstories">Archived stories</router-link>
         <router-link class="nav-links" to="/Getstarted">Get started</router-link>       
         <router-link class="nav-links" to="/login">Login</router-link>
         <router-link class="nav-links" to="/Signup">Sign Up</router-link>
