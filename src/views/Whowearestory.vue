@@ -1,7 +1,7 @@
 <!-- src/components/Whowearestory.vue -->
 <template>
   <div style="margin: auto; width: 80%;">
-  <img style="margin: auto; width: 100%;" src="/images/whoweare.jpg" alt="Whoweare Image"  >
+  <img style="margin: auto; width: 100%;" src="/images/whoweare1.jpg" alt="Whoweare Image"  >
 
     <Navbarwhoweare />
     <h1>Our Story</h1>

@@ -1,7 +1,7 @@
 <!-- src/components/Whoweare.vue -->
 <template>
   <div>
-  <img src="/images/whoweare.jpg" alt="Whoweare Image"  >
+  <img src="/images/whoweare1.jpg" alt="Whoweare Image"  >
       <Navbarwhoweare />
     <h1>Who we are</h1>
 
