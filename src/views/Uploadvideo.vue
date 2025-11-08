@@ -62,7 +62,7 @@ const uploadFile = async () => {
 
   try {
     const result = await uploadData({
-      path: `uploads/${Date.now()}-${selectedFile.value.name}`,
+      path: `videos/${Date.now()}-${selectedFile.value.name}`,
       data: selectedFile.value,
       options: {
         onProgress: ({ transferredBytes, totalBytes }) => {
