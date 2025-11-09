@@ -5,7 +5,7 @@ export const storage = defineStorage({
   name: 'videoStorage', // Amplify will CREATE this bucket automatically
   access: (allow) => ({
     // Public videos - anyone can read/write
-    'videos/*': [
+    'uploads/*': [
       allow.guest.to(['read', 'write', 'delete']),
       allow.authenticated.to(['read', 'write', 'delete'])
     ],

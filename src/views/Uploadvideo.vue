@@ -62,8 +62,9 @@ const uploadFile = async () => {
 
   try {
     const result = await uploadData({
-      path: `videos/${Date.now()}-${selectedFile.value.name}`,
+      path: `uploads/${Date.now()}-${selectedFile.value.name}`,
       data: selectedFile.value,
+      
       options: {
         onProgress: ({ transferredBytes, totalBytes }) => {
           if (totalBytes) {
@@ -79,8 +80,9 @@ const uploadFile = async () => {
     console.log('Upload successful:', result);
     
   } catch (err) {
-    error.value = `Upload failed: ${err.message}`;
-    console.error('Upload error:', err);
+    
+    error.value = `Upload failedxxx: ${err.message}`;
+    console.error('Upload errorsss:', err);
   } finally {
     uploading.value = false;
   }
