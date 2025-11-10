@@ -66,8 +66,8 @@ const uploadFile = async () => {
       data: selectedFile.value,
       
       options: {
-        bucketname: 'amplify-amplifyvuetemplat-videostoragebucketb22462-hk8fnys379fh'
-        region: 'us-east-1'
+        bucketname: 'amplify-amplifyvuetemplat-videostoragebucketb22462-hk8fnys379fh',
+        region: 'us-east-1',
         onProgress: ({ transferredBytes, totalBytes }) => {
           if (totalBytes) {
             uploadProgress.value = Math.round(
