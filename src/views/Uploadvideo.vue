@@ -62,10 +62,12 @@ const uploadFile = async () => {
 
   try {
     const result = await uploadData({
-      path: `uploads/${Date.now()}-${selectedFile.value.name}`,
+      path: `${Date.now()}-${selectedFile.value.name}`,
       data: selectedFile.value,
       
       options: {
+        bucketname: 'amplify-amplifyvuetemplat-videostoragebucketb22462-hk8fnys379fh'
+        region: 'us-east-1'
         onProgress: ({ transferredBytes, totalBytes }) => {
           if (totalBytes) {
             uploadProgress.value = Math.round(
