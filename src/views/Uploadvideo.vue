@@ -61,13 +61,15 @@ const uploadFile = async () => {
   error.value = '';
 
   try {
+    const xpath = `${Date.now()}-${selectedFile.value.name}`;
+    console.log('pathxxxx:', xpath);
     const result = await uploadData({
       path: `${Date.now()}-${selectedFile.value.name}`,
       data: selectedFile.value,
       
       options: {
-        bucketname: 'amplify-amplifyvuetemplat-videostoragebucketb22462-hk8fnys379fh',
-        region: 'us-east-1',
+  //      bucketname: 'amplify-amplifyvuetemplat-videostoragebucketb22462-xx8fnys379fh',
+  //      region: 'us-east-1',
         onProgress: ({ transferredBytes, totalBytes }) => {
           if (totalBytes) {
             uploadProgress.value = Math.round(
@@ -82,7 +84,9 @@ const uploadFile = async () => {
     console.log('Upload successful:', result);
     
   } catch (err) {
-    
+    console.log('Bucket name:', );
+    console.log('hi theres');
+      
     error.value = `Upload failedxxx: ${err.message}`;
     console.error('Upload errorsss:', err);
   } finally {
