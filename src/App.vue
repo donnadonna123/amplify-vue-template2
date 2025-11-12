@@ -7,15 +7,7 @@
   </Layout>
 </template>
 
-<script setup>
-import { onMounted } from 'vue'
 
-onMounted(() => {
-  console.log('Environment:', process.env.NODE_ENV)
-  console.log('Node env:', process.env.NODE_ENV)
-  console.log('Vue version:', Vue.version)
-})
-</script>
  
 
 <style>
