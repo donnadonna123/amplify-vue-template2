@@ -2,7 +2,7 @@
 import { createRouter, createWebHistory} from 'vue-router';
 import { getCurrentUser } from 'aws-amplify/auth';
 
- 
+import Layout from "@/layouts/layout.vue";
 
 // Import your page components
 
@@ -29,8 +29,10 @@ import Huangstory from "@/views/Huangstory.vue";
 
 
 const routes = [
-  
-     
+  {
+    path: '/',
+    component: Layout, // Use Layout as wrapper
+    children: [
       {
         path: '',
         name: 'Home',
@@ -124,7 +126,8 @@ const routes = [
         component: () => import('../views/Userhome.vue'),
         meta: { requiresAuth: true },
       },
- 
+    ]
+  }
 ]
 
 
