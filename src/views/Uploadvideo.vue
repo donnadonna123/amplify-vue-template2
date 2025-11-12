@@ -34,7 +34,9 @@
 
 <script setup>
 import { ref } from 'vue';
+// gen 2 use below instead of old 
 import { uploadData, getUrl } from 'aws-amplify/storage';
+
 
 const selectedFile = ref(null);
 const uploading = ref(false);

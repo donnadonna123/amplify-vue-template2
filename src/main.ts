@@ -3,7 +3,8 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 import { Amplify } from "aws-amplify";
-// gen 2
+
+// gen 2 
 import outputs from "../amplify_outputs.json";
 import './assets/main.css';
 
@@ -17,3 +18,7 @@ Amplify.configure(outputs);
 const app = createApp(App);
 app.use(router);
 app.mount('#app');
+
+
+const bucketName = outputs.storage.bucket_name;
+console.log('S3 Bucket:', bucketName);
