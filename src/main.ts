@@ -6,7 +6,7 @@ import { Amplify } from "aws-amplify";
 // gen 2
 import outputs from "../amplify_outputs.json";
 import './assets/main.css';
-import Layout from './layouts/Layout.vue';
+import Layout from './layouts/layout.vue';
 
 // Log Vue version for confirmation
 import { version } from "vue";
